@@ -2,6 +2,10 @@
 
 This lambda handles all the user requests.
 
+## installing dependencies
+
+- `npm install`
+
 ## testing
 
 - `npm run test`
@@ -12,7 +16,10 @@ This lambda handles all the user requests.
 
 - `npm run invoke`
 
-## building/deploying
+## building
 
 - `npm run build`
+
+## deploying
+
 - `npm run deploy`
