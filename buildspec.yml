@@ -1,0 +1,13 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - cd lambdas/user
+      - npm install
+  test:
+    commands:
+      - npm run lint
+      - npm run test
+  build:
+    commands:
+      - npm run deploy

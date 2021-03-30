@@ -3,3 +3,4 @@ dist/
 .serverless/
 .webpack/
 .nyc_output
+.vscode/
