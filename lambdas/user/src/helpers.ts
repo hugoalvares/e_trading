@@ -3,7 +3,10 @@ export const buildResponse = (statusCode: number, message: string) => {
     statusCode: statusCode,
     body: JSON.stringify({
       message: message
-    })
+    }),
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   }
 }
 

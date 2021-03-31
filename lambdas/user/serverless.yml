@@ -4,14 +4,23 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
 
 functions:
   login:
     handler: handler.login
     events:
       - http:
-          path: /
-          method: get
+          path: /login
+          method: post
+          cors: true
 
 plugins:
   - serverless-bundle
