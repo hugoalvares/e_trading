@@ -1,7 +1,7 @@
 {
   "name": "user-lambda",
   "version": "0.1.0",
-  "description": "This lambda handles all the user requests",
+  "description": "This lambda is responsible for interacting with the UI and the user entity in the DB",
   "scripts": {
     "lint": "eslint \"**/*.ts\"",
     "test": "ava",

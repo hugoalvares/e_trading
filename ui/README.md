@@ -11,3 +11,7 @@
 ## building
 
 - `flutter build web`
+
+## deploying
+
+The deploy is made manually at the moment.

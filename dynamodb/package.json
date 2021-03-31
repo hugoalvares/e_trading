@@ -1,0 +1,14 @@
+{
+  "name": "dynamodb",
+  "version": "1.0.0",
+  "description": "DynamoDB table definitions managed by serverless framework",
+  "scripts": {
+    "build": "serverless package",
+    "deploy": "serverless deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^2.32.0"
+  }
+}

@@ -4,3 +4,4 @@ dist/
 .webpack/
 .nyc_output
 .vscode/
+todo_notes.txt
