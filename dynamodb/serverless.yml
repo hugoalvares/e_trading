@@ -13,11 +13,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: account_number
+            AttributeName: username
             AttributeType: S
         KeySchema:
           -
-            AttributeName: account_number
+            AttributeName: username
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1

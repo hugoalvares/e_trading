@@ -1,5 +1,7 @@
+import { DynamoDB } from 'aws-sdk'
+import { USER_TABLE_NAME, USER_TABLE_KEY } from './src/constants'
 import { RequestResponse, RequestParams } from './src/interfaces'
-import { buildResponse } from './src/helpers'
+import { buildResponse, buildQueryParams } from './src/helpers'
 
 export const login = async (event: RequestParams): Promise<RequestResponse> => {
   try {
@@ -7,9 +9,17 @@ export const login = async (event: RequestParams): Promise<RequestResponse> => {
     if (!event.username || !event.username.length || !event.password || !event.password.length) {
       return buildResponse(400, 'No username or password provided')
     }
-    // implement login validation here
-    return buildResponse(200, 'Login successful')
-    // return buildResponse(401, 'Invalid credentials')
+
+    const connection = new DynamoDB()
+    const queryParams = buildQueryParams(USER_TABLE_NAME, USER_TABLE_KEY, event.username)
+    const user = await connection.getItem(queryParams).promise()
+    console.info('DynamoDB response', user)
+
+    if (user?.Item?.password?.S === event.password) {
+      return buildResponse(200, 'Login successful')
+    } else {
+      return buildResponse(401, 'Invalid credentials')
+    }
   } catch (error) {
     console.error(error)
     return buildResponse(500, 'Internal server error')

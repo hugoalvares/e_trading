@@ -6,3 +6,14 @@ export const buildResponse = (statusCode: number, message: string) => {
     })
   }
 }
+
+export const buildQueryParams = (tableName: string, keyName: string, keyValue: string) => {
+  return {
+    TableName: tableName,
+    Key: {
+      [keyName]: {
+        S: keyValue
+      }
+    }
+  }
+}
