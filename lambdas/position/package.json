@@ -1,12 +1,12 @@
 {
-  "name": "user-lambda",
+  "name": "position-lambda",
   "version": "0.0.1",
-  "description": "This lambda is responsible for handling requests related to the user entity.",
+  "description": "This lambda is responsible for handling requests related to the user position.",
   "scripts": {
     "lint": "eslint \"**/*.ts\"",
     "test": "ava",
     "coverage": "nyc --reporter=text --reporter=text-summary ava",
-    "invoke": "serverless invoke local --function login --path fixtures/loginPayload.json",
+    "invoke": "serverless invoke local --function position --path fixtures/positionPayload.json",
     "build": "serverless package",
     "deploy": "serverless deploy"
   },

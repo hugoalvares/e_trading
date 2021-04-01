@@ -1,6 +1,6 @@
-# user-lambda
+# position-lambda
 
-This lambda is responsible for handling requests related to the user entity.
+This lambda is responsible for handling requests related to the user position.
 
 ## installing dependencies
 

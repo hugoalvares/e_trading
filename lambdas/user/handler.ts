@@ -1,17 +1,17 @@
 import { DynamoDB } from 'aws-sdk'
-import { USER_TABLE_NAME, USER_TABLE_KEY } from './src/constants'
 import { RequestResponse, RequestParams } from './src/interfaces'
-import { buildResponse, buildQueryParams } from './src/helpers'
+import { USER_TABLE_NAME, USER_TABLE_KEY } from '../shared/constants'
+import { buildResponse, buildMessageBody, buildQueryParams } from '../shared/helpers'
 
 export const login = async (event): Promise<RequestResponse> => {
   try {
     console.info('Login requested', event)
     if (!event.body) {
-      return buildResponse(400, 'Invalid parameters')
+      return buildResponse(400, buildMessageBody('Invalid parameters'))
     }
     const params: RequestParams = JSON.parse(event.body)
     if (!params.username || !params.username.length || !params.password || !params.password.length) {
-      return buildResponse(400, 'No username or password provided')
+      return buildResponse(400, buildMessageBody('No username or password provided'))
     }
 
     const connection = new DynamoDB()
@@ -20,12 +20,12 @@ export const login = async (event): Promise<RequestResponse> => {
     console.info('DynamoDB response', user)
 
     if (user?.Item?.password?.S === params.password) {
-      return buildResponse(200, 'Login successful')
+      return buildResponse(200, buildMessageBody('Login successful'))
     } else {
-      return buildResponse(401, 'Invalid credentials')
+      return buildResponse(401, buildMessageBody('Invalid credentials'))
     }
   } catch (error) {
     console.error(error)
-    return buildResponse(500, 'Internal server error')
+    return buildResponse(500, buildMessageBody('Internal server error'))
   }
 }

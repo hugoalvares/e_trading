@@ -4,12 +4,40 @@ phases:
     runtime-versions:
       nodejs: 14
     commands:
-      - cd lambdas/user
+      - echo 'Installing dependencies for DynamoDB'
+      - cd /dynamodb
+      - npm install
+      - echo 'Installing dependencies for code the shared between the lambdas'
+      - cd /lambdas/shared
+      - npm install
+      - echo 'Installing dependencies for user lambda'
+      - cd /lambdas/user
+      - npm install
+      - echo 'Installing dependencies for position lambda'
+      - cd /lambdas/position
       - npm install
   pre_build:
     commands:
+      - echo 'Testing shared code'
+      - cd /lambdas/shared
+      - npm run lint
+      - npm run test
+      - echo 'Testing user lambda'
+      - cd /lambdas/user
+      - npm run lint
+      - npm run test
+      - echo 'Testing position lambda'
+      - cd /lambdas/position
       - npm run lint
       - npm run test
   build:
     commands:
+      - echo 'Deploying DynamoDB'
+      - cd /dynamodb
+      - npm run deploy
+      - echo 'Deploying user lambda'
+      - cd /lambdas/user
+      - npm run deploy
+      - echo 'Deploying position lambda'
+      - cd /lambdas/position
       - npm run deploy

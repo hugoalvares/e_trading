@@ -1,6 +1,6 @@
 # DynamoDB structure
 
-The DynamoDB table and attributes creation is managed bu the `serverless.yml` file present in this folder.
+The DynamoDB table structure is created and managed by the `serverless.yml` file present in this folder.
 
 ## installing dependencies
 

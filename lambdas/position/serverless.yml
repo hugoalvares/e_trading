@@ -1,0 +1,26 @@
+service: position-lambda
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
+
+functions:
+  position:
+    handler: handler.position
+    events:
+      - http:
+          path: /position
+          method: post
+          cors: true
+
+plugins:
+  - serverless-bundle
