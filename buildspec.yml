@@ -5,39 +5,39 @@ phases:
       nodejs: 14
     commands:
       - echo 'Installing dependencies for DynamoDB'
-      - cd /dynamodb
+      - cd $CODEBUILD_SRC_DIR/dynamodb
       - npm install
       - echo 'Installing dependencies for code the shared between the lambdas'
-      - cd /lambdas/shared
+      - cd $CODEBUILD_SRC_DIR/lambdas/shared
       - npm install
       - echo 'Installing dependencies for user lambda'
-      - cd /lambdas/user
+      - cd $CODEBUILD_SRC_DIR/lambdas/user
       - npm install
       - echo 'Installing dependencies for position lambda'
-      - cd /lambdas/position
+      - cd $CODEBUILD_SRC_DIR/lambdas/position
       - npm install
   pre_build:
     commands:
       - echo 'Testing shared code'
-      - cd /lambdas/shared
+      - cd $CODEBUILD_SRC_DIR/lambdas/shared
       - npm run lint
       - npm run test
       - echo 'Testing user lambda'
-      - cd /lambdas/user
+      - cd $CODEBUILD_SRC_DIR/lambdas/user
       - npm run lint
       - npm run test
       - echo 'Testing position lambda'
-      - cd /lambdas/position
+      - cd $CODEBUILD_SRC_DIR/lambdas/position
       - npm run lint
       - npm run test
   build:
     commands:
       - echo 'Deploying DynamoDB'
-      - cd /dynamodb
+      - cd $CODEBUILD_SRC_DIR/dynamodb
       - npm run deploy
       - echo 'Deploying user lambda'
-      - cd /lambdas/user
+      - cd $CODEBUILD_SRC_DIR/lambdas/user
       - npm run deploy
       - echo 'Deploying position lambda'
-      - cd /lambdas/position
+      - cd $CODEBUILD_SRC_DIR/lambdas/position
       - npm run deploy
